@@ -7,10 +7,11 @@ import { MovieDetailsPage } from './components/MovieDetailsPage/MovieDetailsPage
 import { Cast } from './components/Cast/Cast';
 import { Reviews } from './components/Reviews/Reviews';
 import { Nav } from './Nav/Nav';
+// import { AppLayout } from './appLayout/AppLayout';
 
 function App() {
   return (
-    <>
+    <div>
       <Nav />
       <Routes>
         <Route path='/' element={<HomePage />} />
@@ -19,7 +20,7 @@ function App() {
         <Route path='/movies/:movieId/cast' element={<Cast />} />
         <Route path='/movies/:movieId/reviews' element={<Reviews />} />
       </Routes>
-    </>
+    </div>
   );
 };
 
