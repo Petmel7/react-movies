@@ -26,13 +26,13 @@ export const HomePage = () => {
     return (
         <div>
             {loading ? (
-                <div>Loading...</div>
+                <h3>Loading...</h3>
             ) : (
                 <ul>
                     {movies.results ? (
                         movies.results.map(movie => (
                             <li key={movie.id}>
-                                <Link>
+                                <Link to={`/movies/${movie.id}`}>
                                     {movie.title}
                                 </Link>
                             </li>
