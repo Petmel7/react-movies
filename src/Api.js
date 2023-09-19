@@ -11,6 +11,10 @@ export const axiosMovies = async () => {
   return response.data;
 };
 
+export const axiosMoviesId = async () => {
+  const response = await axios.get()
+}
+
 // export const fetchMovies = async () => {
 //     const response = await axios.get('https://api.themoviedb.org/3/discover/movie', {
 //         params: {
