@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { axiosMovies } from '../../Api';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export const HomePage = () => {
     const [movies, setMovies] = useState([]);
