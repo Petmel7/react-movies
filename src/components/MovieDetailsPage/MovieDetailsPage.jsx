@@ -3,13 +3,14 @@ import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { axiosMovieId } from '../../Api';
 import { Link } from "react-router-dom";
-import { Cast } from '../Cast/Cast';
+// import { Cast } from '../Cast/Cast';
+// import { NavPage } from '../../NavPage/NavPage';
 
 export const MovieDetailsPage = () => {
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(false);
-    const location = useLocation();
+    // const location = useLocation();
 
     useEffect(() => {
         async function getMovieId() {
@@ -42,11 +43,14 @@ export const MovieDetailsPage = () => {
                         <h2>{movie.title} ({movie.release_date})</h2>
                             
                         <li>
-                            <Link to={`/movies/${movieId}/cast`} state={{ from: location }}>Cast</Link>
+                            <Link to={`/movies/${movieId}/cast`}>Cast</Link>
                         </li>
+                        {/* <Cast movieId={movieId} /> */}
                         <li>
                             <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
                         </li>
+                            
+                        {/* <NavPage movieId={movieId} /> */}
                             
                         <h3>Original title:</h3>
                         <li>
