@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-// import '../Nav/Nav.components.css';
+import styles from'./Nav.module.css';
 
 export const Nav = () => {
     return (
         <nav>
-            <ul>
+            <ul className={styles.Nav}>
                 <li>
-                    <Link className='Nav' to='/'>Home</Link>
+                    <Link className={styles.NavList} to='/'>Home</Link>
                 </li>
                 <li>
-                    <Link className='Nav' to='/movies'>Movies</Link>
+                    <Link className={styles.NavList} to='/movies'>Movies</Link>
                 </li>
             </ul>
         </nav>

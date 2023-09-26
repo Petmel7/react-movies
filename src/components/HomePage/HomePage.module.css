@@ -1,0 +1,20 @@
+/* HomePage.module.css */
+
+.HomePage {
+    padding: 0;
+    margin: 0;
+}
+
+.HomePageList {
+    margin: 5px 0;
+}
+
+.HomePageLink {
+    text-decoration: none;
+        color: #333;
+
+}
+
+.HomePageLink:hover {
+    text-decoration: underline;
+}

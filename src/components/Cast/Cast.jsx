@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { axiosMovieIdCast } from '../../Api';
 // import { useLocation } from "react-router-dom";
+import styles from './Cast.module.css';
 
 export const Cast = () => {
     const { movieId } = useParams();
@@ -28,18 +29,18 @@ export const Cast = () => {
 
     return (
         <div>
-            <h1>Cast</h1>
+            <h1 className={styles.CastTitle}>Cast</h1>
             
             {loading ? (
                 <h3>Loading...</h3>
             ) : (
                 cast && (
-                    <ul>
+                    <ul className={styles.Cast}>
                         {cast.cast.map(cas => (
                             cas.profile_path && (
-                                <li key={cas.id}>
-                                    <img src={`https://image.tmdb.org/t/p/w200${cas.profile_path}`} alt="img" />
-                                    <p>{cas.name}</p>
+                                <li className={styles.CastList} key={cas.id}>
+                                    <img className={styles.CastImg} src={`https://image.tmdb.org/t/p/w200${cas.profile_path}`} alt="img" />
+                                    <p className={styles.CastName}>{cas.name}</p>
                                 </li>
                             )
                         ))}
@@ -50,54 +51,3 @@ export const Cast = () => {
         </div>
     );
 };
-
-// Компонент Cast.jsx
-// import { useEffect, useState } from 'react';
-// // import { useLocation } from 'react-router-dom';
-// import { axiosMovieIdCast } from '../../Api';
-
-// export const Cast = ({movieId}) => {
-// //   const location = useLocation();
-// //   const movieId = location.pathname.split('/').pop(); // Отримуємо movieId з шляху
-//   const [cast, setCast] = useState(null);
-//   const [loading, setLoading] = useState(false);
-
-//   useEffect(() => {
-//     async function getActors() {
-//       try {
-//         setLoading(true)
-//         const actors = await axiosMovieIdCast(movieId);
-//         setCast(actors)
-//       } catch (error) {
-//         console.log('ERROR', error)
-//       } finally {
-//         setLoading(false)
-//       }
-//     }
-//     getActors()
-//   }, [movieId]);
-
-//       return (
-//         <div>
-//             <h1>Cast</h1>
-            
-//             {loading ? (
-//                 <h3>Loading...</h3>
-//             ) : (
-//                 cast && (
-//                     <ul>
-//                         {cast.cast.map(cas => (
-//                             cas.profile_path && (
-//                                 <li key={cas.id}>
-//                                     <img src={`https://image.tmdb.org/t/p/w200${cas.profile_path}`} alt="img" />
-//                                     <p>{cas.name}</p>
-//                                 </li>
-//                             )
-//                         ))}
-//                     </ul>
-//                 )
-//             )}
-
-//         </div>
-//     );
-// };

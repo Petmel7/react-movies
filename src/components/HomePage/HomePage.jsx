@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { axiosMovies } from '../../Api';
 import { Link } from "react-router-dom";
+import styles from './HomePage.module.css';
 
 export const HomePage = () => {
     const [movies, setMovies] = useState([]);
@@ -12,7 +13,6 @@ export const HomePage = () => {
             try {
                 setLoading(true)
                 const movies = await axiosMovies();
-                // console.log('movies', movies)
                 setMovies(movies)
             } catch (error) {
                 console.log('ERROR', error)
@@ -28,11 +28,11 @@ export const HomePage = () => {
             {loading ? (
                 <h3>Loading...</h3>
             ) : (
-                <ul>
+                <ul className={styles.HomePage}>
                     {movies.results ? (
                         movies.results.map(movie => (
-                            <li key={movie.id}>
-                                <Link to={`/movies/${movie.id}`}>
+                            <li className={styles.HomePageList} key={movie.id}>
+                                <Link className={styles.HomePageLink} to={`/movies/${movie.id}`}>
                                     {movie.title}
                                 </Link>
                             </li>

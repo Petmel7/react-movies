@@ -1,0 +1,66 @@
+/* MovieDetailsPage.module.css */
+
+.MovieDetailsPage {
+    display: flex;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.MovieDetailsPageImgPosterPatch {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 558px) {
+    .MovieDetailsPage {
+        display: block;
+    }
+}
+
+@media (max-width: 399px) {
+    .MovieDetailsPageImgPosterPatch {
+        max-width: 100%;
+    }
+}
+
+.MovieDetailsPageList {
+    padding: 0;
+    margin: 0;
+    margin-right: 30px;
+}
+
+.MovieDetailsPageTitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.MovieDetailsPageLink {
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.MovieDetailsPageLink:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.MovieDetailsPageOriginalTitle {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.MovieDetailsPage p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}

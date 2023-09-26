@@ -1,0 +1,30 @@
+
+
+/* Nav.module.css */
+
+nav, ul, li {
+    margin: 0;
+}
+
+.Nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+    background: linear-gradient(to bottom, #3498db, #1abc9c);
+    /* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); */
+}
+
+.NavList {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.NavList:hover {
+    color: #fff;
+}

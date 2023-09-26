@@ -5,6 +5,7 @@ import { axiosMovieId } from '../../Api';
 import { Link } from "react-router-dom";
 // import { Cast } from '../Cast/Cast';
 // import { NavPage } from '../../NavPage/NavPage';
+import styles from './MovieDetailsPage.module.css';
 
 export const MovieDetailsPage = () => {
     const { movieId } = useParams();
@@ -18,7 +19,6 @@ export const MovieDetailsPage = () => {
                 setLoading(true)
                 const axiosMovie = await axiosMovieId(movieId);
                 setMovie(axiosMovie)
-                // console.log('М-УСПІХ', axiosMovie)
             } catch (error) {
                 console.log('ПОМИЛКА', error)
             } finally {
@@ -28,69 +28,157 @@ export const MovieDetailsPage = () => {
         getMovieId()
     }, [movieId]);
 
+    // return (
+    //     <div className={styles.MovieDetailsPage}>
+    //         {loading ? (
+    //             <h3>Loading...</h3>
+    //         ) : (
+    //             movie && (
+                    
+    //                     <div className={styles.MovieDetailsPageList}>
+    //                         <img className={styles.MovieDetailsPageImgPosterPatch} src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt='Poster' />
+    //                     </div>
+                    
+    //                 <div>
+    //                         <Link className={styles.MovieDetailsPageLink} to={`/movies/${movieId}/cast`}>Cast</Link>
+    //                         <Link className={styles.MovieDetailsPageLink} to={`/movies/${movieId}/reviews`}>Reviews</Link>
+    //                     </div>
+
+    //                     <h2 className={styles.MovieDetailsPageTitle}>{movie.title} ({movie.release_date})</h2>
+                            
+    //                     <h3 className={styles.MovieDetailsPageOriginalTitle}>Original title:</h3>
+    //                     <div className={styles}>
+    //                         {movie.original_title}
+    //                     </div>
+                            
+    //                     <h3 className={styles}>Genres</h3>
+    //                     <ul>
+    //                     {movie.genres.map(genre => (
+    //                         <li className={styles} key={genre.id}>
+    //                             {genre.name}
+    //                         </li>
+    //                     ))}
+    //                     </ul>
+                            
+    //                     <h3 className={styles}>Runtime:</h3>
+    //                     <div className={styles}>
+    //                         {movie.runtime} min.
+    //                     </div>
+                            
+    //                     <h3 className={styles}>Vote average:</h3>
+    //                     <div className={styles}>
+    //                         {movie.vote_average}
+    //                     </div>
+                            
+    //                     <h3 className={styles}>Budget:</h3>
+    //                     <div className={styles}>
+    //                         {movie.budget}
+    //                     </div>
+                            
+    //                     <h3 className={styles}>Overview</h3>
+    //                     <div className={styles}>
+    //                         <p className={styles}>{movie.overview}</p>
+    //                     </div>
+                            
+    //                     <h3 className={styles}>Production countries</h3>
+    //                     <ul>
+    //                     {movie.production_countries.map(product => (
+    //                         <li className={styles} key={product.iso_3166_1}>
+    //                             {product.name}
+    //                         </li>
+    //                     ))}
+    //                             </ul>
+    //             )
+    //         )}
+    //     </div>
+    // );
+
     return (
-        <div>
-            <h1>MovieDetailsPage</h1>
-            
+        
+        <div className={styles.MovieDetailsPage}>
             {loading ? (
                 <h3>Loading...</h3>
             ) : (
                 movie && (
-                    <ul>
-                        <li>
-                            <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt='Poster' />
-                        </li>
-                        <h2>{movie.title} ({movie.release_date})</h2>
+                    <>
+                        <div>
+                            <div className={styles.MovieDetailsPageList}>
+                                <img
+                                    className={styles.MovieDetailsPageImgPosterPath}
+                                    src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                                    alt="Poster"
+                                />
+                            </div>
+
+                            <div>
+                                <Link
+                                    className={styles.MovieDetailsPageLink}
+                                    to={`/movies/${movieId}/cast`}
+                                >
+                                    Cast
+                                    </Link>
+                                    </div>
+                                    <div>
+                                <Link
+                                    className={styles.MovieDetailsPageLink}
+                                    to={`/movies/${movieId}/reviews`}
+                                >
+                                    Reviews
+                                </Link>
+                            </div>
+                        </div>
                             
-                        <li>
-                            <Link to={`/movies/${movieId}/cast`}>Cast</Link>
-                        </li>
-                        {/* <Cast movieId={movieId} /> */}
-                        <li>
-                            <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
-                        </li>
-                            
-                        {/* <NavPage movieId={movieId} /> */}
-                            
-                        <h3>Original title:</h3>
-                        <li>
-                            {movie.original_title}
-                        </li>
-                            
-                        <h3>Genres</h3>
-                        {movie.genres.map(genre => (
-                            <li key={genre.id}>
-                                {genre.name}
-                            </li>
-                        ))}
-                            
-                        <h3>Runtime:</h3>
-                        <li>
-                            {movie.runtime} min.
-                        </li>
-                            
-                        <h3>Vote average:</h3>
-                        <li>
-                            {movie.vote_average}
-                        </li>
-                            
-                        <h3>Budget:</h3>
-                        <li>
-                            {movie.budget}
-                        </li>
-                            
-                        <h3>Overview</h3>
-                        <li>
-                            <p>{movie.overview}</p>
-                        </li>
-                            
-                        <h3>Production countries</h3>
-                        {movie.production_countries.map(product => (
-                            <li key={product.iso_3166_1}>
-                                {product.name}
-                            </li>
-                        ))}
-                    </ul>
+                        <div>
+                            <h1 className={styles.MovieDetailsPageTitle}>
+                                {movie.title} ({movie.release_date})
+                            </h1>
+
+                            <div className={styles.MovieDetailsPageText}>
+                                <span className={styles.MovieDetailsPageOriginalTitle}>Original title:</span>
+                                <span>{movie.original_title}</span>
+                            </div>
+
+                            <h3 className={styles.MovieDetailsPageSection}>Genres</h3>
+                            <ul className={styles.MovieDetailsPageList}>
+                                {movie.genres.map((genre) => (
+                                    <li className={styles.MovieDetailsPageListItem} key={genre.id}>
+                                        {genre.name}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className={styles.MovieDetailsPageText}>
+                                <span className={styles.MovieDetailsPageSection}>Runtime:</span>
+                                <span>{movie.runtime}</span><span>min.</span>
+                            </div>
+
+                            <div className={styles.MovieDetailsPageText}>
+                                <span className={styles.MovieDetailsPageSection}>Vote average:</span>
+                                <span>{movie.vote_average}</span>
+                            </div>
+
+                            <div className={styles.MovieDetailsPageText}>
+                                <span className={styles.MovieDetailsPageSection}>Budget:</span>
+                                <span>{movie.budget}</span>
+                            </div>
+
+                            <h3 className={styles.MovieDetailsPageSection}>Overview</h3>
+                            <div className={styles.MovieDetailsPageText}>
+                                <p>{movie.overview}</p>
+                            </div>
+
+                            <h3 className={styles.MovieDetailsPageSection}>
+                                Production countries
+                            </h3>
+                            <ul className={styles.MovieDetailsPageList}>
+                                {movie.production_countries.map((product) => (
+                                    <li className={styles.MovieDetailsPageListItem} key={product.iso_3166_1}>
+                                        {product.name}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </>
                 )
             )}
         </div>
