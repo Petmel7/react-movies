@@ -1,17 +1,27 @@
 /* MoviesPage.module.css */
 
-.MoviesPage {
-    /* padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-    margin-top: 10px;
-}
+/* .MoviesPageFormik {
+    
+} */
 
 .MoviesPageForm {
     display: flex;
     align-items: center;
+    /* max-width: 600px; */
+    /* justify-content: center; */
 }
+
+/* .MoviesPageForm {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+@media (min-width: 601px) {
+    .MoviesPageForm {
+        display: flex;
+        justify-content: center;
+    }
+} */
 
 .MoviesPageInput {
     padding: 10px;
@@ -33,6 +43,10 @@
 
 .MoviesPageButton:hover {
     background-color: #0056b3;
+}
+
+.MoviesPage {
+    margin-top: 10px;
 }
 
 .MoviesPagelist {

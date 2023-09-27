@@ -28,71 +28,6 @@ export const MovieDetailsPage = () => {
         getMovieId()
     }, [movieId]);
 
-    // return (
-    //     <div className={styles.MovieDetailsPage}>
-    //         {loading ? (
-    //             <h3>Loading...</h3>
-    //         ) : (
-    //             movie && (
-                    
-    //                     <div className={styles.MovieDetailsPageList}>
-    //                         <img className={styles.MovieDetailsPageImgPosterPatch} src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt='Poster' />
-    //                     </div>
-                    
-    //                 <div>
-    //                         <Link className={styles.MovieDetailsPageLink} to={`/movies/${movieId}/cast`}>Cast</Link>
-    //                         <Link className={styles.MovieDetailsPageLink} to={`/movies/${movieId}/reviews`}>Reviews</Link>
-    //                     </div>
-
-    //                     <h2 className={styles.MovieDetailsPageTitle}>{movie.title} ({movie.release_date})</h2>
-                            
-    //                     <h3 className={styles.MovieDetailsPageOriginalTitle}>Original title:</h3>
-    //                     <div className={styles}>
-    //                         {movie.original_title}
-    //                     </div>
-                            
-    //                     <h3 className={styles}>Genres</h3>
-    //                     <ul>
-    //                     {movie.genres.map(genre => (
-    //                         <li className={styles} key={genre.id}>
-    //                             {genre.name}
-    //                         </li>
-    //                     ))}
-    //                     </ul>
-                            
-    //                     <h3 className={styles}>Runtime:</h3>
-    //                     <div className={styles}>
-    //                         {movie.runtime} min.
-    //                     </div>
-                            
-    //                     <h3 className={styles}>Vote average:</h3>
-    //                     <div className={styles}>
-    //                         {movie.vote_average}
-    //                     </div>
-                            
-    //                     <h3 className={styles}>Budget:</h3>
-    //                     <div className={styles}>
-    //                         {movie.budget}
-    //                     </div>
-                            
-    //                     <h3 className={styles}>Overview</h3>
-    //                     <div className={styles}>
-    //                         <p className={styles}>{movie.overview}</p>
-    //                     </div>
-                            
-    //                     <h3 className={styles}>Production countries</h3>
-    //                     <ul>
-    //                     {movie.production_countries.map(product => (
-    //                         <li className={styles} key={product.iso_3166_1}>
-    //                             {product.name}
-    //                         </li>
-    //                     ))}
-    //                             </ul>
-    //             )
-    //         )}
-    //     </div>
-    // );
-
     return (
         
         <div className={styles.MovieDetailsPage}>
@@ -102,9 +37,9 @@ export const MovieDetailsPage = () => {
                 movie && (
                     <>
                         <div>
-                            <div className={styles.MovieDetailsPageList}>
+                            <div className={styles.PosterPath}>
                                 <img
-                                    className={styles.MovieDetailsPageImgPosterPath}
+                                    className={styles.ImgPosterPath}
                                     src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                                     alt="Poster"
                                 />
@@ -112,15 +47,15 @@ export const MovieDetailsPage = () => {
 
                             <div>
                                 <Link
-                                    className={styles.MovieDetailsPageLink}
+                                    className={styles.CastReviewsLink}
                                     to={`/movies/${movieId}/cast`}
                                 >
                                     Cast
-                                    </Link>
-                                    </div>
-                                    <div>
+                                </Link>
+                            </div>
+                            <div>
                                 <Link
-                                    className={styles.MovieDetailsPageLink}
+                                    className={styles.CastReviewsLink}
                                     to={`/movies/${movieId}/reviews`}
                                 >
                                     Reviews
@@ -129,50 +64,53 @@ export const MovieDetailsPage = () => {
                         </div>
                             
                         <div>
-                            <h1 className={styles.MovieDetailsPageTitle}>
+                            <h1 className={styles.ReleaseDateTitle}>
                                 {movie.title} ({movie.release_date})
                             </h1>
+                    
+                            <div>
+                                <div>
+                                    <span className={styles.OriginalTitle}>Original title:</span>
+                                    <span className={styles.MovieOriginalTitle}>{movie.original_title}</span>
+                                </div>
 
-                            <div className={styles.MovieDetailsPageText}>
-                                <span className={styles.MovieDetailsPageOriginalTitle}>Original title:</span>
-                                <span>{movie.original_title}</span>
+                                <div className={styles.MovieDetailsPageText}>
+                                    <span className={styles.OriginalTitle}>Runtime:</span>
+                                    <span className={styles.MovieRunTimeTitle}>{movie.runtime}</span>
+                                    <span className={styles.MovieOriginalTitle}>min.</span>
+                                </div>
+
+                                <div className={styles.MovieDetailsPageText}>
+                                    <span className={styles.OriginalTitle}>Vote average:</span>
+                                    <span className={styles.MovieRunTimeTitle}>{movie.vote_average}</span>
+                                </div>
+
+                                <div className={styles.MovieDetailsPageText}>
+                                    <span className={styles.OriginalTitle}>Budget:</span>
+                                    <span className={styles.MovieRunTimeTitle}>{movie.budget}</span>
+                                </div>
                             </div>
-
-                            <h3 className={styles.MovieDetailsPageSection}>Genres</h3>
-                            <ul className={styles.MovieDetailsPageList}>
+                                
+                            <h3 className={styles.Genres}>Genres</h3>
+                            <ul className={styles.GenresList}>
                                 {movie.genres.map((genre) => (
-                                    <li className={styles.MovieDetailsPageListItem} key={genre.id}>
+                                    <li className={styles.GenresListItem} key={genre.id}>
                                         {genre.name}
                                     </li>
                                 ))}
                             </ul>
 
-                            <div className={styles.MovieDetailsPageText}>
-                                <span className={styles.MovieDetailsPageSection}>Runtime:</span>
-                                <span>{movie.runtime}</span><span>min.</span>
+                            <h3 className={styles.Genres}>Overview</h3>
+                            <div>
+                                <span className={styles.MovieOriginalTitle}>{movie.overview}</span>
                             </div>
 
-                            <div className={styles.MovieDetailsPageText}>
-                                <span className={styles.MovieDetailsPageSection}>Vote average:</span>
-                                <span>{movie.vote_average}</span>
-                            </div>
-
-                            <div className={styles.MovieDetailsPageText}>
-                                <span className={styles.MovieDetailsPageSection}>Budget:</span>
-                                <span>{movie.budget}</span>
-                            </div>
-
-                            <h3 className={styles.MovieDetailsPageSection}>Overview</h3>
-                            <div className={styles.MovieDetailsPageText}>
-                                <p>{movie.overview}</p>
-                            </div>
-
-                            <h3 className={styles.MovieDetailsPageSection}>
+                            <h3 className={styles.Genres}>
                                 Production countries
                             </h3>
-                            <ul className={styles.MovieDetailsPageList}>
+                            <ul className={styles.GenresList}>
                                 {movie.production_countries.map((product) => (
-                                    <li className={styles.MovieDetailsPageListItem} key={product.iso_3166_1}>
+                                    <li className={styles.GenresListItem} key={product.iso_3166_1}>
                                         {product.name}
                                     </li>
                                 ))}

@@ -1,0 +1,38 @@
+/* Стилі для заголовка "Reviews" */
+.Reviews {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Стилі для списку авторів коментарів */
+.Author {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Стилі для окремого автора коментарів */
+.AuthorList {
+    margin-bottom: 20px;
+}
+
+/* Стилі для заголовка автора */
+.AuthorTitle {
+    font-weight: bold;
+}
+
+/* Стилі для імені автора */
+.AuthorName {
+    margin-left: 8px;
+    font-weight: normal;
+}
+
+/* Стилі для тексту коментаря */
+.AuthorContent {
+    margin-top: 8px;
+}
+
+/* Стилі для повідомлення "No comments" */
+.NoComments {
+    font-style: italic;
+    color: #888;
+}

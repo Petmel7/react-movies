@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { axiosMovieIdReviews } from '../../Api';
+import styles from './Reviews.module.css';
 
 export const Reviews = () => {
     const { movieId } = useParams();
@@ -25,20 +26,24 @@ export const Reviews = () => {
 
     return (
     <div>
-        <h1>Reviews</h1>
+        <h1 className={styles.Reviews}>Reviews</h1>
         {loading ? (
             <h3>Loading...</h3>
         ) : reviews && reviews.results.length > 0 ? (
-            <ul>
+            <ul className={styles.Author}>
                 {reviews.results.map(result => (
-                    <li key={result.id}>
-                        <p>Author: {result.author}</p>
-                        <p>{result.content}</p>
+                    <li className={styles.AuthorList} key={result.id}>
+                        <span className={styles.AuthorTitle}>Author:
+                            <span className={styles.AuthorName}>
+                                {result.author}
+                            </span>
+                        </span>
+                        <p className={styles.AuthorContent}>{result.content}</p>
                     </li>
                 ))}
             </ul>
         ) : (
-            <p>No comments</p>
+            <p className={styles.NoComments}>No comments</p>
         )}
     </div>
 );
