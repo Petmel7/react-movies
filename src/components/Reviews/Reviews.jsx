@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { axiosMovieIdReviews } from '../../Api';
+import { Back } from '../Back/Back';
 import styles from './Reviews.module.css';
 
 export const Reviews = () => {
@@ -13,10 +14,8 @@ export const Reviews = () => {
             try {
                 setLoading(true)
                 const reviews = await axiosMovieIdReviews(movieId)
-                console.log(reviews)
                 setReviews(reviews)
             } catch (error) {
-                console.log('reviews', error)
             } finally {
                 setLoading(false)
             }
@@ -25,7 +24,9 @@ export const Reviews = () => {
     }, [movieId]);
 
     return (
-    <div>
+        <div>
+            <Back movieId={movieId} />
+
         <h1 className={styles.Reviews}>Reviews</h1>
         {loading ? (
             <h3>Loading...</h3>

@@ -9,8 +9,8 @@ export const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
     const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYjRhZDJkYmY1OTFjMWUzNmY3MTNkNzNjMjA5MmM0MiIsInN1YiI6IjY1MDZlODlmM2NkMTJjMDEyZGU3ZmEwZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.R26ObZZn8eNnjk4cSDh5BZY8D3wGyztliY6hEkVyn48';
 
-    const handleSearch = async (values) => {
-        const movieName = values.movieName.trim(); // Видалити пробіли з початку і кінця рядка
+    const handleSearch = async (values, { resetForm }) => {
+        const movieName = values.movieName.trim();
         if (movieName) {
             try {
                 const response = await axios.get(
@@ -25,6 +25,7 @@ export const MoviesPage = () => {
                 );
                 const movieResults = response.data.results;
                 setMovies(movieResults);
+                resetForm()
             } catch (error) {
                 console.error('Error searching for movies:', error);
             }
@@ -33,7 +34,10 @@ export const MoviesPage = () => {
 
     return (
         <div>
-            <Formik className={styles.MoviesPageFormik} initialValues={{ movieName: '' }} onSubmit={handleSearch}>
+            <Formik
+                className={styles.MoviesPageFormik}
+                initialValues={{ movieName: '' }}
+                onSubmit={handleSearch}>
                 <Form className={styles.MoviesPageForm}>
                     <Field className={styles.MoviesPageInput}
                         type="text"

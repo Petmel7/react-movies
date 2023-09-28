@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { axiosMovieIdCast } from '../../Api';
 // import { useLocation } from "react-router-dom";
+// import { Link } from "react-router-dom";
+// import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { Back } from '../Back/Back';
 import styles from './Cast.module.css';
 
 export const Cast = () => {
@@ -16,10 +19,8 @@ export const Cast = () => {
             try {
                 setLoading(true)
                 const actors = await axiosMovieIdCast(movieId);
-                console.log('actors', actors)
                 setCast(actors)
             } catch (error) {
-                console.log('ERROR', error)
             } finally {
                 setLoading(false)
             }
@@ -29,6 +30,8 @@ export const Cast = () => {
 
     return (
         <div>
+            <Back movieId={movieId} />
+
             <h1 className={styles.CastTitle}>Cast</h1>
             
             {loading ? (
