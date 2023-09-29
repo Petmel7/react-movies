@@ -1,33 +1,36 @@
 
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import styles from './MoviesPage.module.css';
+import { axiosMoviesSearch } from '../../Api';
+
+import { useSearchParams, useLocation } from "react-router-dom";
 
 export const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
-    const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYjRhZDJkYmY1OTFjMWUzNmY3MTNkNzNjMjA5MmM0MiIsInN1YiI6IjY1MDZlODlmM2NkMTJjMDEyZGU3ZmEwZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.R26ObZZn8eNnjk4cSDh5BZY8D3wGyztliY6hEkVyn48';
+    const [loading, setLoading] = useState(false);
+
+    const location = useLocation();
+    console.log('location', location)
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    console.log('searchParams', searchParams)
+    const movieName = searchParams.get('movieName') ?? '';
+    console.log('movieName', movieName)
 
     const handleSearch = async (values, { resetForm }) => {
         const movieName = values.movieName.trim();
         if (movieName) {
             try {
-                const response = await axios.get(
-                    `https://api.themoviedb.org/3/search/movie?query=${movieName}`,
-
-                    {
-                        params: { language: 'en-US' },
-                        headers: {
-                            Authorization: `Bearer ${apiKey}`,
-                        },
-                    }
-                );
-                const movieResults = response.data.results;
+                setLoading(true)
+                const movieResults = await axiosMoviesSearch(movieName);
                 setMovies(movieResults);
                 resetForm()
             } catch (error) {
                 console.error('Error searching for movies:', error);
+            } finally {
+                setLoading(false)
             }
         }
     };
@@ -48,15 +51,19 @@ export const MoviesPage = () => {
                 </Form>
             </Formik>
 
-            <ul className={styles.MoviesPage}>
-                {movies.map((movie) => (
-                    <li className={styles.MoviesPagelist} key={movie.id}>
-                        <Link className={styles.MoviesPageLink} to={`/movies/${movie.id}`}>
-                            {movie.title}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+            {loading ? (
+                <h3>Loading...</h3>
+            ) : (
+                <ul className={styles.MoviesPage}>
+                    {movies.map((movie) => (
+                        <li className={styles.MoviesPagelist} key={movie.id}>
+                            <Link className={styles.MoviesPageLink} to={`/movies/${movie.id}`}>
+                                {movie.title}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };

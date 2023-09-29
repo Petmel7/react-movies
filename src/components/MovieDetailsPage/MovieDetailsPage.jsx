@@ -1,93 +1,40 @@
 
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { axiosMovieId } from '../../Api';
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from 'react-icons/ai';
+
+import { useLocation } from "react-router-dom";
+
+// import { useSearchParams } from "react-router-dom";
+
 import styles from './MovieDetailsPage.module.css';
 
 export const MovieDetailsPage = () => {
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(false);
-    const location = useLocation();
 
-    const [loadedMovies, setLoadedMovies] = useState([]);
-    console.log('loadedMovies', loadedMovies)
+    const location = useLocation();
+    console.log('MovieDetailsPage location', location)
+
+// const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
-        // async function getMovieId() {
-        //     try {
-        //         setLoading(true)
-        //         const axiosMovie = await axiosMovieId(movieId);
-        //         setMovie(axiosMovie)
-        //     } catch (error) {
-        //         console.log('ПОМИЛКА', error)
-        //     } finally {
-        //         setLoading(false)
-        //     }
-        // }
-        // getMovieId()
-
-        // async function getMovieId() {
-        //     try {
-        //         setLoading(true);
-
-        //         // Перевіряємо, чи фільм вже завантажений
-        //         const loadedMovie = loadedMovies.find((loadedMovie) => loadedMovie.id === movieId);
-
-        //         if (loadedMovie) {
-        //             // Якщо фільм вже завантажений, використовуємо його зі стану
-        //             setMovie(loadedMovie);
-        //         } else {
-        //             // Якщо фільм ще не завантажений, завантажуємо його з сервера
-        //             const axiosMovie = await axiosMovieId(movieId);
-        //             setMovie(axiosMovie);
-
-        //             // Додаємо завантажений фільм до стану loadedMovies
-        //             setLoadedMovies([...loadedMovies, axiosMovie]);
-        //         }
-        //     } catch (error) {
-        //         console.log('ПОМИЛКА', error);
-        //     } finally {
-        //         setLoading(false);
-        //     }
-        // }
-
-
-
         async function getMovieId() {
             try {
-                setLoading(true);
-
-                // Перевіряємо, чи фільм вже завантажений
-                const loadedMovie = loadedMovies.find((loadedMovie) => loadedMovie.id === movieId);
-
-                if (loadedMovie) {
-                    // Якщо фільм вже завантажений, використовуємо його зі стану
-                    setMovie(loadedMovie);
-                } else {
-                    // Якщо фільм ще не завантажений, завантажуємо його з сервера
-                    const axiosMovie = await axiosMovieId(movieId);
-            
-                    // Оновлюємо стан loadedMovies, додаючи новий фільм до попереднього стану
-                    setLoadedMovies(prevLoadedMovies => [...prevLoadedMovies, axiosMovie]);
-            
-                    // Встановлюємо фільм у стан
-                    setMovie(axiosMovie);
-                }
+                setLoading(true)
+                const axiosMovie = await axiosMovieId(movieId);
+                setMovie(axiosMovie)
             } catch (error) {
-                console.log('ПОМИЛКА', error);
+                console.log('ПОМИЛКА', error)
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
         }
-
-
-        if (movieId && !movie) {
-            getMovieId();
-        }
-    }, [movieId, movie, loadedMovies]);
+        getMovieId()
+    }, [movieId]);
 
     return (
         
@@ -98,9 +45,10 @@ export const MovieDetailsPage = () => {
                 movie && (
                     <>
                         <div>
+                                
                             <div className={styles.Back}>
                                 <button className={styles.BackButton}>
-                                    <Link className={styles.BackLink} to={'/movies'} state={{ from: location }}>
+                                    <Link className={styles.BackLink} to={`/movies`} state={{from: location}}>
                                         <AiOutlineArrowLeft className={styles.BackAiOutlineArrowLeft} />
                                     </Link>
                                 </button>
