@@ -1,13 +1,10 @@
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet, useSearchParams } from 'react-router-dom';
 import { axiosMovieId } from '../../Api';
-import { Link } from "react-router-dom";
-import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { NavPage } from '../../NavPage/NavPage';
 
 import { useLocation } from "react-router-dom";
-
-// import { useSearchParams } from "react-router-dom";
 
 import styles from './MovieDetailsPage.module.css';
 
@@ -19,7 +16,8 @@ export const MovieDetailsPage = () => {
     const location = useLocation();
     console.log('MovieDetailsPage location', location)
 
-// const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+    console.log('searchParams', searchParams)
 
     useEffect(() => {
         async function getMovieId() {
@@ -46,13 +44,14 @@ export const MovieDetailsPage = () => {
                     <>
                         <div>
                                 
-                            <div className={styles.Back}>
+                            {/* <div className={styles.Back}>
                                 <button className={styles.BackButton}>
-                                    <Link className={styles.BackLink} to={`/movies`} state={{from: location}}>
+                                    <Link className={styles.BackLink} to={`/movies`} state={{ from: location }}>
                                         <AiOutlineArrowLeft className={styles.BackAiOutlineArrowLeft} />
                                     </Link>
                                 </button>
-                            </div>
+                            </div> */}
+                                
                             <div className={styles.PosterPath}>
                                 <img
                                     className={styles.ImgPosterPath}
@@ -60,25 +59,9 @@ export const MovieDetailsPage = () => {
                                     alt="Poster"
                                 />
                             </div>
-                            
-                            <div className={styles.CastReviews}>
-                                <div className={styles.CastReviewsBlock}>
-                                    <Link
-                                        className={styles.CastReviewsLink}
-                                        to={`/movies/${movieId}/cast`}
-                                    >
-                                        Cast
-                                    </Link>
-                                </div>
-                                <div>
-                                    <Link
-                                        className={styles.CastReviewsLink}
-                                        to={`/movies/${movieId}/reviews`}
-                                    >
-                                        Reviews
-                                    </Link>
-                                </div>
-                            </div>
+                                
+                                <NavPage movieId={movieId} />
+                                <Outlet />
                         </div>
                             
                         <div>

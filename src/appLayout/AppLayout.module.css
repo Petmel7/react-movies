@@ -1,7 +1,10 @@
+/* AppLoyout.module.css */
 
-/* App.module.css */
-
-/* h1, h2, h3, ul, li {
+h1,
+h2,
+h3,
+ul,
+li {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -11,4 +14,4 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 10px 20px;
-} */
+}

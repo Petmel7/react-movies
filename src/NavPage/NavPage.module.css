@@ -1,0 +1,21 @@
+.CastReviews {
+    display: flex;
+    justify-content: baseline;
+}
+
+.CastReviewsBlock {
+    margin-right: 20px;
+}
+
+.CastReviewsLink {
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.CastReviewsLink:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
