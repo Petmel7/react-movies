@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { axiosMovieIdCast } from '../../Api';
-// import { useLocation } from "react-router-dom";
-// import { Link } from "react-router-dom";
-// import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { Back } from '../Back/Back';
 import styles from './Cast.module.css';
 
@@ -11,8 +8,6 @@ export const Cast = () => {
     const { movieId } = useParams();
     const [cast, setCast] = useState(null);
     const [loading, setLoading] = useState(false);
-    // const location = useLocation();
-    // const movieId = location.pathname.split('/').pop(); // Отримуємо movieId з шляху
 
     useEffect(() => {
         async function getActors() {
@@ -50,7 +45,6 @@ export const Cast = () => {
                     </ul>
                 )
             )}
-
         </div>
     );
 };

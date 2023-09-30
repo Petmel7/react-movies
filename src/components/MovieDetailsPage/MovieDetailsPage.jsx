@@ -1,23 +1,17 @@
 
 import { useEffect, useState } from 'react';
-import { useParams, Outlet, useSearchParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { axiosMovieId } from '../../Api';
 import { NavPage } from '../../NavPage/NavPage';
-
-import { useLocation } from "react-router-dom";
+// import { BackButtonPage } from '../BackButtonPage/BackButtonPage';
 
 import styles from './MovieDetailsPage.module.css';
 
 export const MovieDetailsPage = () => {
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
+    console.log('MovieDetailsPage movie', movie)
     const [loading, setLoading] = useState(false);
-
-    const location = useLocation();
-    console.log('MovieDetailsPage location', location)
-
-    const [searchParams, setSearchParams] = useSearchParams();
-    console.log('searchParams', searchParams)
 
     useEffect(() => {
         async function getMovieId() {
@@ -43,14 +37,7 @@ export const MovieDetailsPage = () => {
                 movie && (
                     <>
                         <div>
-                                
-                            {/* <div className={styles.Back}>
-                                <button className={styles.BackButton}>
-                                    <Link className={styles.BackLink} to={`/movies`} state={{ from: location }}>
-                                        <AiOutlineArrowLeft className={styles.BackAiOutlineArrowLeft} />
-                                    </Link>
-                                </button>
-                            </div> */}
+                            {/* <BackButtonPage /> */}
                                 
                             <div className={styles.PosterPath}>
                                 <img
@@ -60,8 +47,9 @@ export const MovieDetailsPage = () => {
                                 />
                             </div>
                                 
-                                <NavPage movieId={movieId} />
-                                <Outlet />
+                            <NavPage movieId={movieId} />
+                            <Outlet />
+                                
                         </div>
                             
                         <div>
@@ -69,28 +57,34 @@ export const MovieDetailsPage = () => {
                                 <h1 className={styles.ReleaseDateTitle}>{movie.title}
                                     ({new Date(movie.release_date).getFullYear()})</h1>
                             </div>
-                            <div className={styles.Title}>
-                                <div className={styles.TitleList}>
+                                
+                            <h3 className={styles.Genres}>Overview</h3>
+                            <div className={styles.Overview}>
+                                <span className={styles.MovieOriginalTitle}>{movie.overview}</span>
+                            </div>
+                                
+                            <ul className={styles.Title}>
+                                <li className={styles.TitleList}>
                                     <span className={styles.OriginalTitle}>Original title:</span>
                                     <span className={styles.MovieOriginalTitle}>{movie.original_title}</span>
-                                </div>
+                                </li>
 
-                                <div className={styles.TitleList}>
+                                <li className={styles.TitleList}>
                                     <span className={styles.OriginalTitle}>Runtime:</span>
                                     <span className={styles.MovieRunTimeTitle}>{movie.runtime}</span>
                                     <span className={styles.MovieOriginalTitle}>min.</span>
-                                </div>
+                                </li>
 
-                                <div className={styles.TitleList}>
+                                <li className={styles.TitleList}>
                                     <span className={styles.OriginalTitle}>Vote average:</span>
                                     <span className={styles.MovieRunTimeTitle}>{movie.vote_average.toFixed(1)}</span>
-                                </div>
+                                </li>
 
-                                <div className={styles.TitleList}>
+                                <li className={styles.TitleList}>
                                     <span className={styles.OriginalTitle}>Budget:</span>
                                     <span className={styles.MovieRunTimeTitle}>{movie.budget}</span>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
                                 
                             <h3 className={styles.Genres}>Genres</h3>
                             <ul className={styles.GenresList}>
@@ -100,11 +94,6 @@ export const MovieDetailsPage = () => {
                                     </li>
                                 ))}
                             </ul>
-
-                            <h3 className={styles.Genres}>Overview</h3>
-                            <div className={styles.Overview}>
-                                <span className={styles.MovieOriginalTitle}>{movie.overview}</span>
-                            </div>
 
                             <h3 className={styles.Genres}>
                                 Production countries

@@ -3,7 +3,7 @@ import styles from './NavPage.module.css';
 
 export const NavPage = ({ movieId }) => {
     const location = useLocation();
-    console.log('location', location)
+    console.log('NavPageLocation', location)
     return (
         <ul className={styles.CastReviews}>
             <li className={styles.CastReviewsBlock}>
@@ -13,14 +13,21 @@ export const NavPage = ({ movieId }) => {
                 >
                     Cast
                 </Link>
-                {/* <Outlet /> */}
             </li>
-            <li>
+            <li className={styles.CastReviewsBlock}>
                 <Link
                     className={styles.CastReviewsLink}
                     to={`/movies/${movieId}/reviews`}
                 >
                     Reviews
+                </Link>
+            </li>
+            <li>
+                <Link
+                    className={styles.CastReviewsLink}
+                    to={`/movies/${movieId}/video`}
+                >
+                    Video
                 </Link>
             </li>
         </ul>
