@@ -36,6 +36,14 @@ export const MovieVideoPage = () => {
                         //     Ваш браузер не підтримує відтворення відео.
                         // </video>
                         <div>
+                                
+                            {/* <video controls width="400" height="300">
+                                {movieVideos.config.url.map((video) => (
+                                    <source src={video.url} type="video" key={video.id} />
+                                ))}
+                                Ваш браузер не підтримує відтворення відео.
+                            </video> */}
+
                             {/* {movieVideos.results.map((video) => (
                                 <div key={video.id}>
                                     <video controls width="400" height="300">
@@ -52,17 +60,17 @@ export const MovieVideoPage = () => {
                                 
 
                                 
-                                <div >
-                                    {/* <video controls width="400" height="300">
+                            {/* <div >
+                                    <video controls width="400" height="300">
                                         <source src={`https://video.tmdb.org/t/p/w400${movieVideos.results.official}`} type="video" />
                                         Ваш браузер не підтримує відтворення відео.
-                                    </video> */}
+                                    </video>
                                     <div>{movieVideos.results.name}</div>
                                     <div>{movieVideos.results.published_at}</div>
                                     <div>{movieVideos.results.site}</div>
                                     <div>{movieVideos.results.size}</div>
                                     <div>{movieVideos.results.type}</div>
-                                </div>
+                                </div> */}
                         </div>
                     )
                 )
