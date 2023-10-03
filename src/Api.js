@@ -57,7 +57,7 @@ export const axiosMovieIdReviews = async movieId => {
 };
 
   export const axiosMovieVideos = async movieId => {
-  const response = await axios.get(`https://api.themoviedb.org/3/tv/${movieId}/season/season_number/episode/episode_number/videos`, {
+  const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
     headers: {
       accept: 'application/json',
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYjRhZDJkYmY1OTFjMWUzNmY3MTNkNzNjMjA5MmM0MiIsInN1YiI6IjY1MDZlODlmM2NkMTJjMDEyZGU3ZmEwZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.R26ObZZn8eNnjk4cSDh5BZY8D3wGyztliY6hEkVyn48'
